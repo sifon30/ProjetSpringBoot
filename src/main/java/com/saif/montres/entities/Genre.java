@@ -46,9 +46,8 @@ public class Genre {
 	public void setDescriptionGen(String descriptionGen) {
 		this.descriptionGen = descriptionGen;
 	}
-	public Genre() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
+	
+	
 	
 }

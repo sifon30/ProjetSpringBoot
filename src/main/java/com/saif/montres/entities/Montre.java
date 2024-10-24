@@ -23,8 +23,28 @@ public class Montre {
 	@ManyToOne
 	private Genre genre;
 	
+public Montre(Long idMontre, String nomMontre, Double prixMontre, Date dateCreation, Genre genre) {
+		super();
+		this.idMontre = idMontre;
+		this.nomMontre = nomMontre;
+		this.prixMontre = prixMontre;
+		this.dateCreation = dateCreation;
+		this.genre = genre;
+	}
+
+
 public Montre() {
 	super();
+}
+
+
+public Genre getGenre() {
+	return genre;
+}
+
+
+public void setGenre(Genre genre) {
+	this.genre = genre;
 }
 
 

@@ -3,6 +3,7 @@ package com.saif.montres.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.saif.montres.entities.Genre;
@@ -14,6 +15,9 @@ public class MontreServiceImpl implements MontreService {
 	@Autowired
 	MontreRepository  montreRepository;
 	
+	
+	@PreAuthorize("hasAuthority('ADMIN')")
+
 	@Override
 	public Montre saveMontre(Montre m) {
 		return montreRepository.save(m);
