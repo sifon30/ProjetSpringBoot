@@ -3,6 +3,8 @@ package com.saif.montres.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +84,11 @@ public class MontreServiceImpl implements MontreService {
 	public List<Montre> trierMontresNomsPrix() {
 		// TODO Auto-generated method stub
 		return montreRepository.trierMontresNomsPrix();
+	}
+
+	@Override
+	public Page<Montre> getAllMontresParPage(int page, int size) {
+		return montreRepository.findAll(PageRequest.of(page, size));
 	}
 
 }

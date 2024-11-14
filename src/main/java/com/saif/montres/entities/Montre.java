@@ -1,12 +1,14 @@
 package com.saif.montres.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne; 
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany; 
 
 @Entity
 public class Montre { 
@@ -23,6 +25,13 @@ public class Montre {
 	@ManyToOne
 	private Genre genre;
 	
+	
+	 @OneToMany (mappedBy = "montre")
+	 private List<Image> images;
+	 
+	 private String imagePath;
+
+	
 public Montre(Long idMontre, String nomMontre, Double prixMontre, Date dateCreation, Genre genre) {
 		super();
 		this.idMontre = idMontre;
@@ -31,6 +40,7 @@ public Montre(Long idMontre, String nomMontre, Double prixMontre, Date dateCreat
 		this.dateCreation = dateCreation;
 		this.genre = genre;
 	}
+
 
 
 public Montre() {
@@ -88,5 +98,23 @@ public String toString() {
 	return "Montre [idMontre=" + idMontre + ", nomMontre=" + nomMontre + ", prixMontre=" + prixMontre
 			+ ", dateCreation=" + dateCreation + "]";
 } 
+
+
+public List<Image> getImages() {
+	return images;
+}
+
+public void setImages(List<Image> images) {
+	this.images = images;}
+
+public String getImagePath() {
+	return imagePath;
+}
+
+public void setImagePath(String imagePath) {
+	this.imagePath = imagePath;
+}
+
+
 
 }

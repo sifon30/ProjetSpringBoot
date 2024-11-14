@@ -23,22 +23,20 @@ import jakarta.servlet.http.HttpServletRequest;
 public class SecurityConfig {
 	
 	 @Bean 
-	 public SecurityFilterChain filterChain (HttpSecurity http) throws 
-	Exception 
+	 public SecurityFilterChain filterChain (HttpSecurity http) throws Exception 
 	 { 
 	  http.sessionManagement( session ->  
 	  session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) 
 	  .csrf( csrf -> csrf.disable())  
-	  
-	  
 	  .cors(cors -> cors.configurationSource(new CorsConfigurationSource() 
 	  { 
-	              @Override 
-	              public CorsConfiguration getCorsConfiguration(HttpServletRequest 
+	   @Override 
+	    public CorsConfiguration getCorsConfiguration(HttpServletRequest 
 	  request) { 
 	                  CorsConfiguration cors = new CorsConfiguration(); 
 	                  
 	  cors.setAllowedOrigins(Collections.singletonList("http://localhost:4200")); 
+	  
 	  cors.setAllowedMethods(Collections.singletonList("*")); 
 	  cors.setAllowedHeaders(Collections.singletonList("*")); 
 	  cors.setExposedHeaders(Collections.singletonList("Authorization")); 
@@ -47,8 +45,7 @@ public class SecurityConfig {
 	          })) 
 	            .authorizeHttpRequests( requests -> 
 	            requests.requestMatchers("/api/all/**").hasAnyAuthority("ASMIN","USER")
-	            .requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN",
-						  "USER")
+	            .requestMatchers(HttpMethod.GET,"/api/getbyid/**").hasAnyAuthority("ADMIN", "USER")
 	           .requestMatchers(HttpMethod.POST,"/api/addmon/**").hasAnyAuthority("ADMIN")
 				  .requestMatchers(HttpMethod.PUT,"/api/updatemon/**").hasAuthority("ADMIN")
 				  .requestMatchers(HttpMethod.DELETE,"/api/delmon/**").hasAuthority("ADMIN")
